@@ -32,3 +32,18 @@
 
 > 주의!! 꼭 압축 해제한 폴더명이 각각 blockSQL과 medical_recode_system가 되야 합니다.
 ## 3. 예제
+
+## 4. 스키마
+customer
+
+    customerID, customerName, hospitalID, disease, prescription, date
+
+hospital
+
+    hospitalID, hospitalName, hospitalAdress
+
+## 5. 각 모듈 설명
+### define_table_module.py
+테이블을 정의하는 모듈입니다. 
+
+[blockSQL](https://github.com/hslee1539/blockSQL).[Connection](https://github.com/hslee1539/blockSQL/blob/master/connection_module.py).execute() 메소드로 sql 명령어로 테이블을 만듭니다.
