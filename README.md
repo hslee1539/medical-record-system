@@ -43,6 +43,8 @@ medical-record-system
 > ***주의!! 꼭 압축 해제한 폴더명이 각각 blockSQL과 medical_recode_system가 되야 합니다.***
 # [3.](#idex)예제
 
+이 패키지의 test 폴더의 코드를 실행해 보세요
+
 # [4.](#index)스키마
 customer
 
