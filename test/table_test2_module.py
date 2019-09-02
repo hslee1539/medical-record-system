@@ -25,8 +25,8 @@ def display():
     tmp = connection.execute("""
     SELECT *
     FROM customer
-    """).fetchall()
-    for row in tmp:
+    """)
+    for row in blockSQL.sql.tool.fetch_module.fetchoneGenerator(tmp):
         print(row)
     
     print("------------------------------------------------")
