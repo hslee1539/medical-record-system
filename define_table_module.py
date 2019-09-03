@@ -11,7 +11,7 @@ def createTable(connection : blockSQL.Connection) -> None:
     """)
     connection.execute("""
     CREATE TABLE medical_record(
-        medical_recodeID INTEGER PRIMARY KEY AUTOINCREMENT,
+        medical_recordID INTEGER PRIMARY KEY AUTOINCREMENT,
         customerID INTEGER,
         hospitalID INTEGER,
         disease TEXT,

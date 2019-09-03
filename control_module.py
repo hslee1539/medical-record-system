@@ -18,15 +18,17 @@ def updateCustomer(connection : blockSQL.Connection, id : int, name = "", addres
     id를 제외한 컬럼들은 빈 텍스트가 오면 그 컬럼은 업데이트 하지 않습니다."""
     set_SQL = ""
     if(name != ""):
-        set_SQL += " customerName = '" + name + "'"
+        set_SQL += " customerName = '" + name + "',"
     if(address != ""):
-        set_SQL += " customerAddress = '" + address + "'"
+        set_SQL += " customerAddress = '" + address + "',"
     if(phoneNumber != ""):
         set_SQL += " customerPhoneNumber = '" + phoneNumber + "'"
+    if(set_SQL[-1] == ','):
+        set_SQL = set_SQL[:-1]
     return connection.execute("""
     UPDATE customer
     SET{1}
-    WHERE id = {0}""".format(id, set_SQL))
+    WHERE customerID = {0}""".format(id, set_SQL))
 
 def insertHospital(connection : blockSQL.Connection, name : str, address : str, id = 0) -> blockSQL.Cursor:
     """병원을 추가합니다. id가 0이면 자동 배정됩니다."""
@@ -45,13 +47,15 @@ def updateHospital(connection : blockSQL.Connection, id : int, name = "", addres
     """병원을 업데이트 합니다"""
     set_SQL = ""
     if(name != ""):
-        set_SQL += " hospitalName = '" + name + "'"
+        set_SQL += " hospitalName = '" + name + "',"
     if(address != ""):
         set_SQL += " hospitalAddress = '" + address + "'"
+    if(set_SQL[-1] == ','):
+        set_SQL = set_SQL[:-1]
     return connection.execute("""
     UPDATE hospital
     SET{1}
-    WHERE id = {0}
+    WHERE hospitalID = {0}
     """.format(id, set_SQL))
 
 def insertMedicalRecord(connection : blockSQL.Connection, customerID : int, hospitalID : int, disease : str, prescription : str, date : int, id = 0) -> blockSQL.Cursor:
@@ -71,15 +75,19 @@ def updateMedicalRecord(connection : blockSQL.Connection, id : int, customerID =
     """병력 기록을 수정합니다."""
     set_SQL = ""
     if(customerID != ""):
-        set_SQL += " customerID = " + str(customerID)
+        set_SQL += " customerID = " + str(customerID) + ','
     if(hospitalID != ""):
-        set_SQL += " hospitalID = " + str(hospitalID)
+        set_SQL += " hospitalID = " + str(hospitalID) + ','
     if(disease != ""):
-        set_SQL += " disease = '" + disease + "'"
+        set_SQL += " disease = '" + disease + "',"
     if(prescription != ""):
-        set_SQL += " prescription = '" + prescription + "'"
+        set_SQL += " prescription = '" + prescription + "',"
     if(date != 0):
         set_SQL += " date = " + str(date)
+    
+    if(set_SQL[-1] == ','):
+        set_SQL = set_SQL[:-1]
+
     return connection.execute("""
     UPDATE medical_record
     SET{1}
