@@ -32,12 +32,12 @@ def insertHospital(connection : blockSQL.Connection, name : str, address : str, 
     """병원을 추가합니다. id가 0이면 자동 배정됩니다."""
     if(id == 0):
         return connection.execute("""
-        INSERT INTO customer (hospitalName, hospitalAddress)
+        INSERT INTO hospital (hospitalName, hospitalAddress)
         VALUES ("{0}", "{1}")
         """.format(name, address))
     else:
         return connection.execute("""
-        INSERT INTO customer
+        INSERT INTO hospital
         VALUES ({0}, "{1}", "{2}")
         """.format(id, name, address))
 
